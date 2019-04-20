@@ -351,7 +351,7 @@ void BeamsWidget::redraw_structure_case(int case_index)
 
 
     // STRUCTURE CASES //
-    if (case_index == 0) // Articulado-apodado
+    if (case_index == 0) // Roller-pinned
     {
 
         QPainterPath isostatic_path;
@@ -364,25 +364,25 @@ void BeamsWidget::redraw_structure_case(int case_index)
         this->graphics_scene->addPolygon(right_pinned, black_pen, white_brush);
     }
 
-    else if (case_index == 1) // Voladizo
+    else if (case_index == 1) // Cantilever
     {
-        QPainterPath fly_path;
-        fly_path.moveTo(-160, 0);
-        fly_path.lineTo(-160, -90);
-        fly_path.quadTo(QPoint(0, 0), QPoint(160,0));
-        this->graphics_scene->addPath(fly_path, moment_pen, moment_brush);
+        QPainterPath cantilever_path;
+        cantilever_path.moveTo(-160, 0);
+        cantilever_path.lineTo(-160, -90);
+        cantilever_path.quadTo(QPoint(0, 0), QPoint(160,0));
+        this->graphics_scene->addPath(cantilever_path, moment_pen, moment_brush);
 
         // Structure symbols on top
         this->graphics_scene->addLine(left_fixed, black_pen);
     }
 
-    else if (case_index == 2) // Empotrada-articulada
+    else if (case_index == 2) // Fixed-roller
     {
-        QPainterPath empotrada_articulada_path;
-        empotrada_articulada_path.moveTo(-160, 0);
-        empotrada_articulada_path.lineTo(-160, -70);
-        empotrada_articulada_path.quadTo(QPoint(0, 150), QPoint(160,0));
-        this->graphics_scene->addPath(empotrada_articulada_path, moment_pen, moment_brush);
+        QPainterPath fixed_roller_path;
+        fixed_roller_path.moveTo(-160, 0);
+        fixed_roller_path.lineTo(-160, -70);
+        fixed_roller_path.quadTo(QPoint(0, 150), QPoint(160,0));
+        this->graphics_scene->addPath(fixed_roller_path, moment_pen, moment_brush);
 
         // Structure symbols on top
         this->graphics_scene->addLine(left_fixed, black_pen);
@@ -395,14 +395,14 @@ void BeamsWidget::redraw_structure_case(int case_index)
         special_info->setPos(50, 60);
     }
 
-    else if (case_index == 3) // Bi-empotrado
+    else if (case_index == 3) // Fixed-fixed
     {
-        QPainterPath bi_empotrado_path;
-        bi_empotrado_path.moveTo(-160, 0);
-        bi_empotrado_path.lineTo(-160, -70);
-        bi_empotrado_path.quadTo(QPoint(0, 200), QPoint(160,-70));
-        bi_empotrado_path.lineTo(160,0);
-        this->graphics_scene->addPath(bi_empotrado_path, moment_pen, moment_brush);
+        QPainterPath bi_fixed_path;
+        bi_fixed_path.moveTo(-160, 0);
+        bi_fixed_path.lineTo(-160, -70);
+        bi_fixed_path.quadTo(QPoint(0, 200), QPoint(160,-70));
+        bi_fixed_path.lineTo(160,0);
+        this->graphics_scene->addPath(bi_fixed_path, moment_pen, moment_brush);
 
         // Structure symbols on top
         this->graphics_scene->addLine(left_fixed, black_pen);
@@ -450,13 +450,15 @@ void BeamsWidget::structure_calculation()
             left_moment = -1*q*L*L/2;  center_moment = 0;  right_moment = 0;
             left_shear = -1*q*L;       center_shear = 0;   right_shear = 0;
             break;
+
         case 2: // Fixed-roller
             left_moment = -1*q*L*L/8;  center_moment = 9*q*L*L/128;  right_moment = 0;
-            left_shear = -5*q*L/8;       center_shear = 0;   right_shear = 3*q*L/8;
+            left_shear = -5*q*L/8;     center_shear = 0;             right_shear = 3*q*L/8;
             break;
+
         case 3: // Fixed-fixed
             left_moment = -1*q*L*L/12;  center_moment = q*L*L/24;  right_moment = -1*q*L*L/12;
-            left_shear = -1*q*L/2;       center_shear = 0;   right_shear = q*L/2;
+            left_shear = -1*q*L/2;      center_shear = 0;          right_shear = q*L/2;
             break;
     }
 

@@ -1,6 +1,6 @@
 # Steel beams basic calculations
 
-This is a Qt Creator project folder. The widget inside can performs calculations with different beam and steel types, under the conditions of basic structure cases.
+This is a Qt Creator project folder. The widget inside can perform calculations with different beam and steel types, under the conditions of 4 basic structure cases.
 
 ### Customizable parameters held by the widget
 
