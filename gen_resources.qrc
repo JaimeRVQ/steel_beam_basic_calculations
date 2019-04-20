@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/imgs">
+        <file>resources/plain_icon.png</file>
+        <file>resources/profiles_heb.png</file>
+        <file>resources/profiles_ipe.png</file>
+        <file>resources/profiles_round_pipe.png</file>
+        <file>resources/profiles_square_pipe.png</file>
+        <file>resources/profiles_upn.png</file>
+    </qresource>
+</RCC>
